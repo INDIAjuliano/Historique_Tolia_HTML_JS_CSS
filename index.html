@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Filter + Search</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"><link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'><link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<body ng-app="myApp" ng-controller="myCtrl as ctrl">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 text-center">
+        <h3>Tolia Historique</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+
+        <div class="form-group">
+          <label for=""></label>
+          <input type="text" class="form-control" placeholder="Tapez votre recherche..." ng-model="searchValue" id="">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <h4> Action :</h4>
+        <span ng-repeat="genre in ctrl.genres">
+      <label class="checkbox-inline"><input type="checkbox" ng-click="ctrl.toggleGenre(genre)">{{genre}}</label> </span>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-sm-12">
+        <ul class="list-group">
+          <li class="list-group-item" ng-repeat="historique in ctrl.historiques | filter : { genre: ctrl.selectedGenre } : ctrl.comparateur | filter:searchValue">
+            {{historique.title}}
+            <em><small>({{historique.genre.join(",")}})</small></em>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 text-center">
+        <div class="well well-sm"><a href="#" target="_blank">Tolia Madagascar</a></div>
+      </div>
+    </div>
+  </div>
+<!-- partial -->
+  <!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js'></script> -->
+  <script src='historique.js'></script>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js'></script><script  src="./script.js"></script>
+
+</body>
+</html>
